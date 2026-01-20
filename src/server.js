@@ -14,7 +14,22 @@ const newsletterRoutes = require("./routes/newsletters");
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+
+app.use(
+  cors({
+    origin: [
+
+     `http://localhost:${process.env.LOCAL_PORT || 8080}`,
+      process.env.FRONTEND_CORS_URL,
+    
+    ].filter(Boolean),
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  })
+);
+
+app.options("*", cors());
 
 connectDB();
 

@@ -90,9 +90,7 @@ const authController = {
         console.log("New user saved successfully!");
       }
 
-      // res.redirect(`${config.FRONTEND_URL}?auth=success&email=${encodeURIComponent(data.email)}`);
-      
-      res.redirect(`https://mail-mate-frontend.vercel.app/?auth=success&email=${encodeURIComponent(data.email)}`);
+      res.redirect(`${process.env.FRONTEND_URL}?auth=success&email=${encodeURIComponent(data.email)}`);      
       
     } catch (err) {
       console.error("ERROR during authentication:");
