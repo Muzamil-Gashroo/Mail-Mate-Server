@@ -52,19 +52,19 @@ Create a `.env` file in the project root with the following structure:
 # Obtain from: https://console.cloud.google.com/apis/credentials
 CLIENT_ID=your_oauth_client_id_from_google_console
 CLIENT_SECRET=your_oauth_client_secret
-REDIRECT_URI=http://localhost:5000/auth/google/callback
+REDIRECT_URI=http://localhost/auth/google/callback
 
 # Frontend Configuration
 # Adjust based on client application location
-FRONTEND_URL=http://localhost:3000
+FRONTEND_URL=http://localhost
 
 # Database Connection
-# Local: mongodb://localhost:27017/gmail-client
+# Local: mongodb://localhost/gmail-client
 # Cloud: mongodb+srv://username:password@cluster.mongodb.net/gmail-client
-MONGODB_URI=mongodb://localhost:27017/gmail-client
+MONGODB_URI=mongodb://localhost/gmail-client
 
 # Server Configuration
-PORT=5000
+PORT=0000
 NODE_ENV=development
 
 # Email Tracking (Optional - for public-facing tracking URLs)
@@ -82,8 +82,8 @@ NGROK_URL=https://your-tunnel-url.ngrok-free.app
    - Gmail API (`gmail.modify` scope required)
    - Google+ API (for user profile data)
 4. Create OAuth 2.0 Client ID (type: Web application)
-   - **Authorized JavaScript origins**: `http://localhost:5000`
-   - **Authorized redirect URIs**: `http://localhost:5000/auth/google/callback`
+   - **Authorized JavaScript origins**: `http://localhost`
+   - **Authorized redirect URIs**: `http://localhost/auth/google/callback`
 5. Download credentials as JSON and extract:
    - Copy `client_id` → `CLIENT_ID`
    - Copy `client_secret` → `CLIENT_SECRET`
@@ -94,7 +94,7 @@ NGROK_URL=https://your-tunnel-url.ngrok-free.app
 npm start
 ```
 
-Server bootstraps on `http://localhost:5000`. Nodemon watches source files for hot-reload.
+Server bootstraps on `http://localhost`. Nodemon watches source files for hot-reload.
 
 ## API Endpoint Reference
 
@@ -111,7 +111,7 @@ Initiates OAuth 2.0 authorization code flow.
 - **Prompt**: `consent` (forces user consent screen)
 
 ```
-GET http://localhost:5000/auth/google
+GET http://localhost:/auth/google
 → Redirects to: https://accounts.google.com/o/oauth2/v2/auth?...
 ```
 
@@ -193,7 +193,7 @@ Sends an email through Gmail API with optional read receipt tracking.
 1. Validates user authentication via access token
 2. If `trackRead=true`:
    - Generates unique `trackingId` (UUID v4)
-   - Embeds 1×1 pixel: `<img src="http://localhost:5000/api/track/trackingId" />`
+   - Embeds 1×1 pixel: `<img src="http://localhost/api/track/trackingId" />`
    - Creates `SentEmail` document with tracking metadata
 3. Constructs MIME message (RFC 2822 format)
 4. Submits to Gmail API with base64 encoding
@@ -205,7 +205,7 @@ Sends an email through Gmail API with optional read receipt tracking.
   "success": true,
   "messageId": "gmail_message_id",
   "trackingId": "uuid-v4-tracking-id",
-  "trackingUrl": "http://localhost:5000/api/track/uuid-v4-tracking-id",
+  "trackingUrl": "http://localhost/api/track/uuid-v4-tracking-id",
   "sentAt": "2026-01-20T10:30:00.000Z"
 }
 ```

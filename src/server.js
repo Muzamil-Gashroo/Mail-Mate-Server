@@ -10,7 +10,7 @@ const newsletterRoutes = require("./routes/newsletters");
 const { helper } = require("./utils/helper");
 
 // (only uncomment if you want to use scheduler, and first configure the env variables for credentials)
-// require("./utils/emailScheduler"); (additional feature)
+// require("./utils/emailScheduler"); (additional featureno)
 
 const app = express();
 
