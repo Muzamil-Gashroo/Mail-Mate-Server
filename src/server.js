@@ -7,29 +7,22 @@ const authRoutes = require("./routes/auth");
 const emailRoutes = require("./routes/emails");
 const trackingRoutes = require("./routes/tracking");
 const newsletterRoutes = require("./routes/newsletters");
+const { helper } = require("./utils/helper");
 
 // (only uncomment if you want to use scheduler, and first configure the env variables for credentials)
-// require("./utils/emailScheduler"); 
+// require("./utils/emailScheduler"); (additional feature)
 
 const app = express();
 
+app.use(helper);
 app.use(express.json());
 
 app.use(
   cors({
-    origin: [
-
-     `http://localhost:${process.env.LOCAL_PORT || 8080}`,
-      process.env.FRONTEND_CORS_URL,
-    
-    ].filter(Boolean),
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
+    origin: process.env.FRONTEND_CORS_URL,
     credentials: true,
   })
 );
-
-app.options("*", cors());
 
 connectDB();
 

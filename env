@@ -1,0 +1,14 @@
+CLIENT_ID=45041738816-te723jid644thfh07ctqj3cb6gmokll7.apps.googleusercontent.com
+CLIENT_SECRET=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
+REDIRECT_URI=http://localhost:5000/auth/google/callback
+PORT=5000
+NGROK_URL=https://purringly-anthropogenic-arlo.ngrok-free.dev
+
+# MONGODB_URI=mongodb://127.0.0.1:27017/gmail-client
+MONGODB_URI=mongodb+srv://fomusaib_db_user:sesya123456789@cluster-mails.qestqkz.mongodb.net/gmail-client?retryWrites=true&w=majority&appName=Cluster-Mails
+
+EMAIL_USER=storerijal0@gmail.com
+EMAIL_PASS=dtoq lxeh cifv jadb
+FRONTEND_URL=http://localhost:8080
+LOCAL_PORT=8080
+FRONTEND_CORS_URL=https://mail-mate-frontend.vercel.app
